@@ -34,3 +34,4 @@ jacoco.exec
 .env.*
 !.env.example
 
+server/src/main/resources/server.properties
