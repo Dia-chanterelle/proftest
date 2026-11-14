@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.LoginController"
+            styleClass="root-pane">
+
+    <VBox alignment="CENTER" spacing="18"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+        <Label text="ProfTest" styleClass="app-title"/>
+        <Label text="Система тестирования профессиональных навыков" styleClass="app-subtitle"/>
+
+        <VBox alignment="CENTER" spacing="12" maxWidth="340" styleClass="login-card">
+            <Label text="Авторизация" styleClass="section-title"/>
+
+            <VBox spacing="4">
+                <Label text="Логин" styleClass="field-label"/>
+                <TextField fx:id="loginField" promptText="Введите логин" styleClass="text-field"/>
+            </VBox>
+
+            <VBox spacing="4">
+                <Label text="Пароль" styleClass="field-label"/>
+                <PasswordField fx:id="passwordField" promptText="Введите пароль" styleClass="text-field"
+                              onAction="#handleLogin"/>
+            </VBox>
+
+            <Label fx:id="statusLabel" text="" styleClass="status-label" wrapText="true"/>
+
+            <Button fx:id="loginButton" text="Войти" onAction="#handleLogin"
+                    styleClass="btn-primary" maxWidth="Infinity"/>
+            <Button fx:id="registerButton" text="Регистрация" onAction="#handleRegister"
+                    styleClass="btn-secondary" maxWidth="Infinity"/>
+        </VBox>
+
+        <Label text="admin / admin123 — учётная запись по умолчанию" styleClass="hint-label"/>
+    </VBox>
+</AnchorPane>

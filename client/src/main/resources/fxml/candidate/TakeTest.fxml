@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.candidate.TakeTestController"
+            styleClass="root-pane">
+
+    <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" spacing="12">
+
+        <!-- Header -->
+        <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="16">
+            <Label fx:id="testTitleLabel" text="Тест" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="questionCountLabel" styleClass="status-label"/>
+            <Label fx:id="timerLabel" text="Время: --:--" styleClass="timer-label"/>
+        </HBox>
+
+        <ProgressBar fx:id="progressBar" maxWidth="Infinity" progress="0"/>
+
+        <!-- Question -->
+        <VBox VBox.vgrow="ALWAYS" spacing="12" styleClass="question-panel">
+            <Label fx:id="questionTextLabel" text="" styleClass="question-text" wrapText="true"/>
+
+            <VBox fx:id="optionsBox" spacing="8"/>
+
+            <TextArea fx:id="openAnswerArea" promptText="Введите ответ..." prefRowCount="5"
+                      visible="false" managed="false"/>
+        </VBox>
+
+        <!-- Navigation -->
+        <HBox spacing="12" alignment="CENTER">
+            <Button fx:id="prevButton" text="← Назад" onAction="#handlePrev" styleClass="btn-secondary"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="finishButton" text="Завершить тест" onAction="#handleFinish" styleClass="btn-danger"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="nextButton" text="Далее →" onAction="#handleNext" styleClass="btn-primary"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

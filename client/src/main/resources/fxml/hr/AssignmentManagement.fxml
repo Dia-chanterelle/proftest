@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.hr.AssignmentController"
+            styleClass="root-pane">
+
+    <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" spacing="10">
+
+        <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="12">
+            <Button text="← Назад" onAction="#handleBack" styleClass="btn-secondary-small"/>
+            <Label text="Назначение тестов" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="statusLabel" styleClass="status-label"/>
+        </HBox>
+
+        <HBox spacing="8" alignment="CENTER_LEFT" styleClass="toolbar">
+            <Button text="Обновить" onAction="#handleRefresh" styleClass="btn-secondary-small"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Назначить тест" onAction="#handleCreate" styleClass="btn-primary-small"/>
+            <Button text="Отозвать назначение" onAction="#handleDelete" styleClass="btn-danger-small"/>
+        </HBox>
+
+        <TableView fx:id="table" VBox.vgrow="ALWAYS" styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="idCol" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="testCol" text="Тест" prefWidth="250"/>
+                <TableColumn fx:id="userCol" text="Пользователь" prefWidth="220"/>
+                <TableColumn fx:id="deadlineCol" text="Дедлайн" prefWidth="160"/>
+                <TableColumn fx:id="attemptsCol" text="Попыток" prefWidth="80"/>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.hr.ReportsController"
+            styleClass="root-pane">
+
+    <top>
+        <HBox styleClass="top-bar" spacing="12" alignment="CENTER_LEFT">
+            <Button text="← Назад" onAction="#handleBack" styleClass="btn-secondary-small"/>
+            <Label text="Отчёты и статистика" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Обновить" onAction="#handleRefresh" styleClass="btn-secondary-small"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" styleClass="main-content">
+
+            <!-- TAB 1: Summary -->
+            <Tab text="Сводка">
+                <VBox spacing="14" styleClass="panel-box">
+                    <!-- KPI cards row -->
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <VBox styleClass="stat-card" alignment="CENTER" spacing="4" prefWidth="160">
+                            <Label text="Всего попыток" styleClass="stat-label"/>
+                            <Label fx:id="totalAttemptsLabel" text="—" styleClass="stat-value"/>
+                        </VBox>
+                        <VBox styleClass="stat-card" alignment="CENTER" spacing="4" prefWidth="160">
+                            <Label text="Процент сдавших" styleClass="stat-label"/>
+                            <Label fx:id="passRateLabel" text="—" styleClass="stat-value"/>
+                        </VBox>
+                        <VBox styleClass="stat-card" alignment="CENTER" spacing="4" prefWidth="160">
+                            <Label text="Уникальных тестируемых" styleClass="stat-label"/>
+                            <Label fx:id="uniqueUsersLabel" text="—" styleClass="stat-value"/>
+                        </VBox>
+                        <VBox styleClass="stat-card" alignment="CENTER" spacing="4" prefWidth="160">
+                            <Label text="Активных тестов" styleClass="stat-label"/>
+                            <Label fx:id="activeTestsLabel" text="—" styleClass="stat-value"/>
+                        </VBox>
+                        <VBox styleClass="stat-card" alignment="CENTER" spacing="4" prefWidth="160">
+                            <Label text="Средний балл" styleClass="stat-label"/>
+                            <Label fx:id="avgScoreLabel" text="—" styleClass="stat-value"/>
+                        </VBox>
+                    </HBox>
+                    <Separator/>
+                    <Label text="Последние 10 попыток" styleClass="section-title"/>
+                    <TableView fx:id="recentTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="rUserCol" text="Пользователь" prefWidth="180"/>
+                            <TableColumn fx:id="rTestCol" text="Тест" prefWidth="220"/>
+                            <TableColumn fx:id="rStartCol" text="Дата" prefWidth="150"/>
+                            <TableColumn fx:id="rScoreCol" text="Балл" prefWidth="80"/>
+                            <TableColumn fx:id="rPassedCol" text="Результат" prefWidth="100"/>
+                            <TableColumn fx:id="rStatusCol" text="Статус" prefWidth="100"/>
+                        </columns>
+                        <placeholder><Label text="Нет данных"/></placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- TAB 2: Tests stats -->
+            <Tab text="По тестам">
+                <VBox spacing="8" styleClass="panel-box">
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="Фильтр по навыку:"/>
+                        <ComboBox fx:id="skillFilterCombo" prefWidth="220" onAction="#handleSkillFilter"/>
+                        <Button text="Все тесты" onAction="#handleClearSkillFilter" styleClass="btn-secondary-small"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="testStatsStatus" styleClass="status-label"/>
+                    </HBox>
+                    <TableView fx:id="testStatsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="tsTitle" text="Тест" prefWidth="200"/>
+                            <TableColumn fx:id="tsSkills" text="Навыки" prefWidth="180"/>
+                            <TableColumn fx:id="tsAttempts" text="Попыток" prefWidth="80"/>
+                            <TableColumn fx:id="tsAvgScore" text="Средний балл" prefWidth="110"/>
+                            <TableColumn fx:id="tsPassRate" text="Процент успеха" prefWidth="90"/>
+                            <TableColumn fx:id="tsPassed" text="Прошли" prefWidth="75"/>
+                            <TableColumn fx:id="tsFailed" text="Не прошли" prefWidth="90"/>
+                        </columns>
+                        <placeholder><Label text="Нет данных"/></placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- TAB 3: Skills stats -->
+            <Tab text="По навыкам">
+                <VBox spacing="8" styleClass="panel-box">
+                    <Label text="Использование навыков в тестах" styleClass="section-title"/>
+                    <TableView fx:id="skillStatsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="ssName" text="Навык" prefWidth="200"/>
+                            <TableColumn fx:id="ssCategory" text="Категория" prefWidth="150"/>
+                            <TableColumn fx:id="ssTests" text="Тестов" prefWidth="80"/>
+                            <TableColumn fx:id="ssAttempts" text="Попыток (через навык)" prefWidth="160"/>
+                            <TableColumn fx:id="ssPassRate" text="Средний % успеха" prefWidth="140"/>
+                        </columns>
+                        <placeholder><Label text="Нет данных. Добавьте навыки к тестам."/></placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- TAB 4: User activity (admin only — hidden for HR) -->
+            <Tab fx:id="userActivityTab" text="Активность пользователей">
+                <VBox spacing="8" styleClass="panel-box">
+                    <Label text="Активность пользователей" styleClass="section-title"/>
+                    <TableView fx:id="userStatsTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="usName" text="Пользователь" prefWidth="180"/>
+                            <TableColumn fx:id="usLogin" text="Логин" prefWidth="120"/>
+                            <TableColumn fx:id="usAttempts" text="Попыток" prefWidth="80"/>
+                            <TableColumn fx:id="usPassed" text="Прошли" prefWidth="80"/>
+                            <TableColumn fx:id="usFailed" text="Не прошли" prefWidth="100"/>
+                            <TableColumn fx:id="usAvgScore" text="Средний балл" prefWidth="120"/>
+                        </columns>
+                        <placeholder><Label text="Нет данных"/></placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+            <!-- TAB 5: Detailed results -->
+            <Tab text="Детальные результаты">
+                <VBox spacing="8" styleClass="panel-box">
+                    <HBox spacing="8" alignment="CENTER_LEFT">
+                        <Label text="Фильтр по тесту:"/>
+                        <ComboBox fx:id="testFilterCombo" prefWidth="260" onAction="#handleFilterByTest"/>
+                        <Button text="Все" onAction="#handleClearTestFilter" styleClass="btn-secondary-small"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="statusLabel" styleClass="status-label"/>
+                        <Label fx:id="summaryLabel" styleClass="status-label"/>
+                    </HBox>
+                    <TableView fx:id="table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="idCol" text="ID" prefWidth="55"/>
+                            <TableColumn fx:id="userCol" text="Пользователь" prefWidth="170"/>
+                            <TableColumn fx:id="testCol" text="Тест" prefWidth="210"/>
+                            <TableColumn fx:id="startTimeCol" text="Начало" prefWidth="145"/>
+                            <TableColumn fx:id="scoreCol" text="Балл (%)" prefWidth="80"/>
+                            <TableColumn fx:id="statusCol" text="Статус" prefWidth="100"/>
+                            <TableColumn fx:id="passedCol" text="Результат" prefWidth="90"/>
+                        </columns>
+                        <placeholder><Label text="Нет данных"/></placeholder>
+                    </TableView>
+                </VBox>
+            </Tab>
+
+        </TabPane>
+    </center>
+</BorderPane>

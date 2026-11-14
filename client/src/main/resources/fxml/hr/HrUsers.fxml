@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.hr.HrUsersController"
+            styleClass="root-pane">
+
+    <!-- Top bar -->
+    <top>
+        <HBox styleClass="top-bar" spacing="12" alignment="CENTER_LEFT">
+            <Button text="← Назад" onAction="#handleBack" styleClass="btn-secondary-small"/>
+            <Label text="Пользователи" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Обновить" onAction="#handleRefresh" styleClass="btn-secondary-small"/>
+        </HBox>
+    </top>
+
+    <!-- Main content -->
+    <center>
+        <SplitPane dividerPositions="0.38" styleClass="main-content">
+
+            <!-- Left: user list -->
+            <VBox spacing="8" styleClass="panel-box">
+                <Label text="Список пользователей" styleClass="section-title"/>
+                <HBox spacing="6" alignment="CENTER_LEFT">
+                    <TextField fx:id="searchField" promptText="Поиск по логину, имени, отделу..."
+                               HBox.hgrow="ALWAYS" onAction="#handleSearch"/>
+                    <Button text="Найти" onAction="#handleSearch" styleClass="btn-secondary-small"/>
+                </HBox>
+                <Label fx:id="userCountLabel" styleClass="status-label" text="Загрузка..."/>
+                <TableView fx:id="usersTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="loginCol" text="Логин" prefWidth="110"/>
+                        <TableColumn fx:id="fullNameCol" text="Полное имя" prefWidth="160"/>
+                        <TableColumn fx:id="departmentCol" text="Отдел" prefWidth="110"/>
+                        <TableColumn fx:id="rolesCol" text="Роли" prefWidth="120"/>
+                        <TableColumn fx:id="activeCol" text="Статус" prefWidth="100"/>
+                    </columns>
+                    <placeholder><Label text="Нет пользователей"/></placeholder>
+                </TableView>
+            </VBox>
+
+            <!-- Right: user details -->
+            <VBox spacing="10" styleClass="panel-box">
+                <Label fx:id="selectedUserLabel" text="Выберите пользователя" styleClass="h2-label"/>
+                <HBox spacing="20">
+                    <Label fx:id="selectedEmailLabel" text="Email: —" styleClass="body-label"/>
+                    <Label fx:id="selectedPositionLabel" text="Должность: —" styleClass="body-label"/>
+                </HBox>
+                <HBox spacing="20">
+                    <Label fx:id="selectedDeptLabel" text="Отдел: —" styleClass="body-label"/>
+                </HBox>
+                <Separator/>
+
+                <TabPane fx:id="detailTabs" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+
+                    <!-- Назначения -->
+                    <Tab text="Назначения тестов">
+                        <VBox spacing="6">
+                            <TableView fx:id="assignmentsTable" VBox.vgrow="ALWAYS" prefHeight="400">
+                                <columns>
+                                    <TableColumn fx:id="aTestCol" text="Тест" prefWidth="200"/>
+                                    <TableColumn fx:id="aDeadlineCol" text="Дедлайн" prefWidth="145"/>
+                                    <TableColumn fx:id="aAttemptsCol" text="Попыток" prefWidth="70"/>
+                                    <TableColumn fx:id="aAssignedByCol" text="Назначил" prefWidth="120"/>
+                                </columns>
+                                <placeholder><Label text="Назначений нет"/></placeholder>
+                            </TableView>
+                        </VBox>
+                    </Tab>
+
+                    <!-- Результаты -->
+                    <Tab text="Результаты тестов">
+                        <VBox spacing="6">
+                            <TableView fx:id="resultsTable" VBox.vgrow="ALWAYS" prefHeight="400">
+                                <columns>
+                                    <TableColumn fx:id="rTestCol" text="Тест" prefWidth="190"/>
+                                    <TableColumn fx:id="rStartCol" text="Дата прохождения" prefWidth="145"/>
+                                    <TableColumn fx:id="rScoreCol" text="Балл" prefWidth="70"/>
+                                    <TableColumn fx:id="rPassedCol" text="Результат" prefWidth="110"/>
+                                    <TableColumn fx:id="rStatusCol" text="Статус" prefWidth="100"/>
+                                </columns>
+                                <placeholder><Label text="Результатов нет"/></placeholder>
+                            </TableView>
+                        </VBox>
+                    </Tab>
+
+                </TabPane>
+            </VBox>
+
+        </SplitPane>
+    </center>
+</BorderPane>

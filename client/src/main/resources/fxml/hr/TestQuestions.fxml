@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.hr.TestQuestionsController"
+            styleClass="root-pane">
+
+    <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" spacing="8">
+
+        <HBox styleClass="page-header" alignment="CENTER_LEFT">
+            <Label fx:id="testTitleLabel" text="Вопросы теста" styleClass="page-title"/>
+        </HBox>
+
+        <HBox VBox.vgrow="ALWAYS" spacing="8">
+            <!-- Left: test questions -->
+            <VBox HBox.hgrow="ALWAYS" spacing="6" styleClass="panel">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="Вопросы в тесте" styleClass="section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Удалить из теста" onAction="#handleRemoveQuestion" styleClass="btn-danger-small"/>
+                </HBox>
+                <TableView fx:id="testQuestionsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="tqIdCol" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="tqTextCol" text="Текст" prefWidth="240"/>
+                        <TableColumn fx:id="tqTypeCol" text="Тип" prefWidth="120"/>
+                        <TableColumn fx:id="tqPointsCol" text="Баллы" prefWidth="70"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <!-- Right: all questions bank -->
+            <VBox HBox.hgrow="ALWAYS" spacing="6" styleClass="panel">
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="Банк вопросов" styleClass="section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Добавить в тест" onAction="#handleAddQuestion" styleClass="btn-primary-small"/>
+                </HBox>
+                <TableView fx:id="allQuestionsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="aqIdCol" text="ID" prefWidth="50"/>
+                        <TableColumn fx:id="aqTextCol" text="Текст" prefWidth="200"/>
+                        <TableColumn fx:id="aqTypeCol" text="Тип" prefWidth="120"/>
+                        <TableColumn fx:id="aqTopicCol" text="Тема" prefWidth="100"/>
+                    </columns>
+                </TableView>
+            </VBox>
+        </HBox>
+    </VBox>
+</AnchorPane>

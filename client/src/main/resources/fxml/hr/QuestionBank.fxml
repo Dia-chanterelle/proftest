@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.hr.QuestionBankController"
+            styleClass="root-pane">
+
+    <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" spacing="10">
+
+        <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="12">
+            <Button text="← Назад" onAction="#handleBack" styleClass="btn-secondary-small"/>
+            <Label text="Банк вопросов" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="statusLabel" styleClass="status-label"/>
+        </HBox>
+
+        <HBox spacing="8" alignment="CENTER_LEFT" styleClass="toolbar">
+            <TextField fx:id="searchField" promptText="Поиск..." prefWidth="220" styleClass="text-field"/>
+            <ComboBox fx:id="typeFilterCombo" prefWidth="160"/>
+            <Button text="Обновить" onAction="#handleRefresh" styleClass="btn-secondary-small"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Создать" onAction="#handleCreate" styleClass="btn-primary-small"/>
+            <Button text="Редактировать" onAction="#handleEdit" styleClass="btn-secondary-small"/>
+            <Button text="Удалить" onAction="#handleDelete" styleClass="btn-danger-small"/>
+        </HBox>
+
+        <TableView fx:id="questionsTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="idCol" text="ID" prefWidth="60"/>
+                <TableColumn fx:id="textCol" text="Текст вопроса" prefWidth="350"/>
+                <TableColumn fx:id="typeCol" text="Тип" prefWidth="130"/>
+                <TableColumn fx:id="topicCol" text="Тема" prefWidth="130"/>
+                <TableColumn fx:id="pointsCol" text="Баллы" prefWidth="70"/>
+                <TableColumn fx:id="difficultyCol" text="Сложность" prefWidth="90"/>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

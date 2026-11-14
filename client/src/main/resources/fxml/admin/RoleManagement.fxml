@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.admin.UserManagementController"
+            styleClass="root-pane">
+    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20"
+          AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <Label text="Роли системы" styleClass="page-title"/>
+        <VBox spacing="8" styleClass="login-card">
+            <Label text="ADMIN — Полный доступ, управление пользователями и системой" styleClass="body-label"/>
+            <Label text="HR_MANAGER — Создание тестов, назначение, просмотр результатов" styleClass="body-label"/>
+            <Label text="CANDIDATE — Прохождение назначенных тестов, просмотр своих результатов" styleClass="body-label"/>
+            <Label text="EMPLOYEE — Базовый доступ, аналогично CANDIDATE" styleClass="body-label"/>
+        </VBox>
+        <Label text="Для изменения ролей пользователей используйте раздел «Управление пользователями»" styleClass="hint-label"/>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,65 @@
+package com.proftest.common.protocol;
+
+public enum RequestType {
+    // Auth
+    LOGIN,
+    LOGOUT,
+    REGISTER,
+    CHANGE_PASSWORD,
+
+    // User management (Admin)
+    GET_ALL_USERS,
+    GET_USER_BY_ID,
+    CREATE_USER,
+    UPDATE_USER,
+    DELETE_USER,
+    SET_USER_ROLE,
+    TOGGLE_USER_ACTIVE,
+
+    // Skills
+    GET_ALL_SKILLS,
+    CREATE_SKILL,
+    UPDATE_SKILL,
+    DELETE_SKILL,
+
+    // Tests
+    GET_ALL_TESTS,
+    GET_TEST_BY_ID,
+    CREATE_TEST,
+    UPDATE_TEST,
+    DELETE_TEST,
+    TOGGLE_TEST_ACTIVE,
+    SET_TEST_SKILLS,
+
+    // Questions
+    GET_ALL_QUESTIONS,
+    GET_QUESTIONS_BY_TEST,
+    CREATE_QUESTION,
+    UPDATE_QUESTION,
+    DELETE_QUESTION,
+    ADD_QUESTION_TO_TEST,
+    REMOVE_QUESTION_FROM_TEST,
+
+    // Assignments
+    GET_MY_ASSIGNMENTS,
+    GET_ALL_ASSIGNMENTS,
+    CREATE_ASSIGNMENT,
+    DELETE_ASSIGNMENT,
+
+    // Test taking
+    START_ATTEMPT,
+    SUBMIT_ANSWER,
+    FINISH_ATTEMPT,
+    GET_ATTEMPT_RESULT,
+
+    // Results / Reports
+    GET_MY_RESULTS,
+    GET_ALL_RESULTS,
+    GET_REPORT_BY_TEST,
+    GET_REPORT_BY_USER,
+
+    // Roles
+    GET_ALL_ROLES,
+
+    PING
+}

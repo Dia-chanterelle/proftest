@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.candidate.MyResultsController"
+            styleClass="root-pane">
+
+    <VBox AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" spacing="10">
+
+        <HBox styleClass="page-header" alignment="CENTER_LEFT" spacing="12">
+            <Button text="← Назад" onAction="#handleBack" styleClass="btn-secondary-small"/>
+            <Label text="Мои результаты" styleClass="page-title"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="statusLabel" styleClass="status-label"/>
+            <Label fx:id="summaryLabel" styleClass="status-label"/>
+        </HBox>
+
+        <HBox spacing="8" styleClass="toolbar">
+            <Button text="Обновить" onAction="#handleRefresh" styleClass="btn-secondary-small"/>
+        </HBox>
+
+        <TableView fx:id="table" VBox.vgrow="ALWAYS" styleClass="data-table">
+            <columns>
+                <TableColumn fx:id="testCol" text="Тест" prefWidth="260"/>
+                <TableColumn fx:id="startTimeCol" text="Начало" prefWidth="150"/>
+                <TableColumn fx:id="endTimeCol" text="Конец" prefWidth="150"/>
+                <TableColumn fx:id="scoreCol" text="Балл (%)" prefWidth="90"/>
+                <TableColumn fx:id="statusCol" text="Статус" prefWidth="110"/>
+                <TableColumn fx:id="passedCol" text="Пройден" prefWidth="80"/>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.MainController"
+            styleClass="root-pane">
+
+    <BorderPane AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+                AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+        <!-- Top bar -->
+        <top>
+            <HBox styleClass="top-bar" spacing="16" alignment="CENTER_LEFT">
+                <Label text="ProfTest" styleClass="app-title-small"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="welcomeLabel" styleClass="welcome-label"/>
+                <Label fx:id="roleLabel" styleClass="role-label"/>
+                <Button text="Выход" onAction="#handleLogout" styleClass="btn-danger-small"/>
+            </HBox>
+        </top>
+
+        <!-- Left sidebar -->
+        <left>
+            <VBox styleClass="sidebar" spacing="4" prefWidth="230">
+                <Label text="Панель управления" styleClass="sidebar-section-title"/>
+
+                <!-- Admin section -->
+                <VBox fx:id="adminMenu" spacing="2">
+                    <Label text="АДМИНИСТРАТОР" styleClass="sidebar-category"/>
+                    <Button text="Управление пользователями" onAction="#openUserManagement"
+                            styleClass="sidebar-btn" maxWidth="Infinity"/>
+                </VBox>
+
+                <Separator/>
+
+                <!-- HR section -->
+                <VBox fx:id="hrMenu" spacing="2">
+                    <Label text="ТЕСТИРОВАНИЕ" styleClass="sidebar-category"/>
+                    <Button text="Пользователи" onAction="#openHrUsers"
+                            styleClass="sidebar-btn" maxWidth="Infinity"/>
+                    <Button text="Тесты" onAction="#openTestManagement"
+                            styleClass="sidebar-btn" maxWidth="Infinity"/>
+                    <Button text="Банк вопросов" onAction="#openQuestionBank"
+                            styleClass="sidebar-btn" maxWidth="Infinity"/>
+                    <Button text="Навыки" onAction="#openSkillManagement"
+                            styleClass="sidebar-btn" maxWidth="Infinity"/>
+                    <Button text="Назначение тестов" onAction="#openAssignmentManagement"
+                            styleClass="sidebar-btn" maxWidth="Infinity"/>
+                    <Button text="Отчёты и статистика" onAction="#openReports"
+                            styleClass="sidebar-btn" maxWidth="Infinity"/>
+                </VBox>
+
+                <Separator/>
+
+                <!-- Candidate section -->
+                <VBox fx:id="candidateMenu" spacing="2">
+                    <Label text="МОИ ДАННЫЕ" styleClass="sidebar-category"/>
+                    <Button text="Мои тесты" onAction="#openMyTests"
+                            styleClass="sidebar-btn" maxWidth="Infinity"/>
+                    <Button text="Мои результаты" onAction="#openMyResults"
+                            styleClass="sidebar-btn" maxWidth="Infinity"/>
+                    <Button text="Профиль" onAction="#openProfile"
+                            styleClass="sidebar-btn" maxWidth="Infinity"/>
+                </VBox>
+            </VBox>
+        </left>
+
+        <!-- Main content area -->
+        <center>
+            <VBox alignment="CENTER" spacing="20" styleClass="main-content">
+                <Label text="Добро пожаловать в ProfTest" styleClass="h1-label"/>
+                <Label fx:id="welcomeLabel" styleClass="h2-label"/>
+                <Label fx:id="roleLabel" styleClass="body-label"/>
+                <Separator/>
+                <Label text="Выберите раздел в меню слева" styleClass="hint-label"/>
+            </VBox>
+        </center>
+    </BorderPane>
+</AnchorPane>

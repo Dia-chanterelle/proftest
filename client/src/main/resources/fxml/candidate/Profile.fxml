@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.proftest.client.controller.candidate.ProfileController"
+            styleClass="root-pane">
+
+    <VBox alignment="CENTER" spacing="16"
+          AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20"
+          AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30">
+
+        <Label text="Профиль" styleClass="section-title"/>
+
+        <GridPane hgap="12" vgap="10" maxWidth="400" styleClass="login-card">
+            <columnConstraints>
+                <ColumnConstraints minWidth="130"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+            <Label text="Логин:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <Label fx:id="loginLabel" styleClass="body-label" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="ФИО:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <Label fx:id="fullNameLabel" styleClass="body-label" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Email:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <Label fx:id="emailLabel" styleClass="body-label" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <Label text="Телефон:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+            <Label fx:id="phoneLabel" styleClass="body-label" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <Label text="Подразделение:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+            <Label fx:id="departmentLabel" styleClass="body-label" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <Label text="Должность:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+            <Label fx:id="positionLabel" styleClass="body-label" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+            <Label text="Роли:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+            <Label fx:id="rolesLabel" styleClass="body-label" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+        </GridPane>
+
+        <Separator/>
+        <Label text="Изменить пароль" styleClass="section-title"/>
+
+        <GridPane hgap="12" vgap="8" maxWidth="400" styleClass="login-card">
+            <columnConstraints>
+                <ColumnConstraints minWidth="130"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+            <Label text="Текущий пароль:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+            <PasswordField fx:id="oldPasswordField" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+            <Label text="Новый пароль:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+            <PasswordField fx:id="newPasswordField" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+            <Label text="Подтверждение:" styleClass="field-label" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+            <PasswordField fx:id="confirmPasswordField" styleClass="text-field" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        </GridPane>
+
+        <Button text="Изменить пароль" onAction="#handleChangePassword" styleClass="btn-primary"/>
+        <Label fx:id="statusLabel" text="" styleClass="status-label"/>
+    </VBox>
+</AnchorPane>
